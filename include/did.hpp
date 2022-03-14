@@ -7,13 +7,14 @@ CONTRACT did: public contract {
   public:
     using contract::contract;
 
-    ACTION registerid(name from);
+    ACTION registerid(name from, string did);
     ACTION removeid(name from);
-    ACTION clearids();
+    ACTION clearids(); // for develop
 
   private:
     TABLE ids {
-      name  user;
+      name    user;
+      string  did;
       auto primary_key() const { return user.value; }
     };
     typedef multi_index<name("ids"), ids> ids_table;

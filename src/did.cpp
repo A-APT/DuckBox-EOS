@@ -1,6 +1,6 @@
 #include <did.hpp>
 
-ACTION did::registerid(name from) {
+ACTION did::registerid(name from, string did) {
   require_auth(from);
   print("a");
 
@@ -14,6 +14,7 @@ ACTION did::registerid(name from) {
     // create the record
     _ids.emplace(from, [&](auto& id) {
       id.user = from;
+      id.did = did;
     });
   } // else: do nothing
   print("c");
